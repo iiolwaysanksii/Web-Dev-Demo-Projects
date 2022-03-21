@@ -1,0 +1,56 @@
+.header {
+	height: 85vh;
+	background-image: linear-gradient(
+		to right bottom, 
+		rgba($color-primary-light, 0.808), 
+		rgba($color-primary-dark, 0.801)), 
+		url("../img/hero-small.jpg");
+	background-size: cover;
+	background-position: top;
+	position: relative;
+
+	//if this property is supported then do this
+	@supports(clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)){
+		-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+			/* Specify co-ordinates clock-wise, for any polygon 
+				you want to create. Points position is relative fromfrom top left corner
+			*/
+		height: 95vh;
+	}
+
+	//check responsive image in CSS , part 6 of course, time stamp:5:30
+	@media (min-resolution: 192dpi) and (min-width: 37.5em),
+					(-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+					(min-width: 125em) {
+		background-image: linear-gradient(
+			to right bottom, 
+			rgba($color-primary-light, 0.808), 
+			rgba($color-primary-dark, 0.801)), 
+			url("../img/hero.jpg");
+	}
+	
+	@include respond(phone) {
+		-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+	}
+
+	&__logo-box {
+		position: absolute;
+		top: 4rem;
+		left: 4rem;
+	}
+
+	&__logo {
+		height: 3.5rem;
+	}
+	
+	&__text-box {
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center; 
+		/* Works on the button because it's text */
+	}
+}

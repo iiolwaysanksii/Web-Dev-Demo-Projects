@@ -1,0 +1,103 @@
+.story {
+	width: 75%;
+	margin: 0 auto;
+	box-shadow: 0 3rem 6rem rgba($color-black, .1);
+	background-color: rgba($color-white, .6);
+	border-radius: 3px;
+	padding: 6rem;
+	padding-left: 9rem;
+	font-size: $default-font-size;
+
+	//skew the story block
+	transform: skewX(-12deg);
+
+	@include respond(tab-port) {
+		width: 100%;
+		padding: 4rem;
+		padding-left: 7rem;
+	}
+	
+	@include respond(phone) {
+		transform: skewX(0);
+	}
+	// & > * {
+	// 	transform: skewX(12deg); //this only makes the text go back to normal, and not the image
+	// 	//since transform definition below takes precedence over this, since two transform propeties can not be applied at the ssme time
+	// 	//this may change in future with further development. And so for now we need to do this mannualy
+	// with each children
+	// }
+
+	&__shape {
+		width: 15rem;
+		height: 15rem;
+		float: left;
+		position: relative;
+
+		transform: translateX(-3rem) skewX(12deg); //makes the circle move a bit left so text and circle has some space, this however moves circle into 6rem padding
+		//so we add more padding on left side, see above
+		
+		overflow: hidden;
+		border-radius: 50%; //if clip path is not supported, then we use this to give circle shape, but text still doesn't wraps around the shape
+
+		@supports(clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)){
+			//gives the circle shape
+			-webkit-clip-path: circle(50% at 50% 50%);
+			clip-path: circle(50% at 50% 50%); //50% is best
+		
+			-webkit-shape-outside: circle(50% at 50% 50%);
+			shape-outside: circle(50% at 50% 50%);
+			//makes the text wrap around the circle shape, first parameter is radius which is half of height
+			//then we provide co-ordinate in a similar fashion, in order for this to work, we must also define element as float
+			//and also has a height and width.
+			border-radius: none; //if clip-path is supported, then border radius is not needed
+		}
+	
+		@include respond(phone) {
+			transform: translateX(-3rem) skewX(0);
+		}
+	}
+
+	&__image {
+		height: 100%; //this makes the image take up 100% of height the &__shape, which is 15rem
+		//no matter how big or small img is.
+		//Note: To make responsive images, we must define width/height of images.
+		
+		//sometimes height and width don't match, and that makes the img not fit properly,
+		//so make the shorter dimension take 100% of space, so that there's no empty space, in this case height.
+	
+		transform: translateX(-4rem) scale(1.4); //moves image to left so the lady is in view, also scaling here helps with zoom-out effect
+	}
+
+	&__text {
+		transform: skewX(12deg);
+
+		@include respond(phone) {
+			transform: skewX(0);
+		}
+	}
+
+	&__caption {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, 20%);
+		text-align: center;
+		color: $color-white;
+		text-transform: uppercase;
+		font-size: 1.7rem;
+		opacity: 0;
+		transition: all 1s;
+		backface-visibility: hidden; //removes slight glitch from animation, this will fix most glitches for animation
+	}
+	
+	//as soon as you hover on story, apply these changes to caption
+	&:hover &__caption {
+		opacity: 1;
+		transform: translate(-50%, -50%); // -50% was the original y-coordinate, but we had changed it to 20%, to remove text from picture
+		//now when we hover, we bring it back
+	}
+	&:hover &__image {
+		transform: translateX(-4rem) scale(1);
+		filter: blur(3px) brightness(80%);
+	}
+}

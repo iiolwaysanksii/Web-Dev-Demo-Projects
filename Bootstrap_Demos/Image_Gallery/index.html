@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Gallery</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-images" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" d="M12.002 4h-10a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1zm-10-1a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-10zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+				<path fill-rule="evenodd" d="M4 2h10a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1v1a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2h1a1 1 0 0 1 1-1z"/>
+			  </svg> Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+		
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					
+					<li class="nav-item">
+					<a class="nav-link" href="#">About</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="#">Contact</a>
+					</li>
+				</ul>
+				
+				<ul class="navbar-nav navbar-rigt">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Download</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="#">Search</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	  </nav>
+	
+	  <div class="container">
+		<div class="jumbotron">
+			<h1><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-camera-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+				<path fill-rule="evenodd" d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+			  </svg> The Anime Gallery</h1>
+			<p>Wallpapers from my favourite Anime.</p>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBheJXZ14-u4lVKPZUBcR-7HPTwsR-96axlw&usqp=CAU" alt="AOT">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7e346e17-44b7-4514-8bee-9cdc14f69dfb/dcs2mop-d56a37fc-78e8-4c25-8972-7ebcc148c689.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvN2UzNDZlMTctNDRiNy00NTE0LThiZWUtOWNkYzE0ZjY5ZGZiXC9kY3MybW9wLWQ1NmEzN2ZjLTc4ZTgtNGMyNS04OTcyLTdlYmNjMTQ4YzY4OS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.sWYv96smNToO2wI4LP5feV3Pu7OY9-ok7oE5M_uQpJ4" alt="AOT">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://www.xtrafondos.com/wallpapers/asta-de-black-clover-4081.jpg" alt="Black Clover">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://c4.wallpaperflare.com/wallpaper/24/465/305/anime-black-clover-asta-black-clover-yuno-black-clover-wallpaper-thumb.jpg" alt="Black Clover">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://c4.wallpaperflare.com/wallpaper/589/693/86/anime-given-akihiko-kaji-haruki-nakayama-mafuyu-satou-hd-wallpaper-preview.jpg" alt="Given">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://64.media.tumblr.com/4fb001b6a89c26d189eb7d9c9b360617/tumblr_pxfmn6XXai1ynik93o6_r1_500.png" alt="Given">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://wallpapercave.com/wp/MYghouu.jpg" alt="FMA">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPfDQvwQOqAPbMT0nt4thwkVm6NLvNWjrPQA&usqp=CAU" alt="FMA">
+			</div>
+			
+			<div class="col-lg-4 col-sm-6">
+				<img class="img-thumbnail" src="https://wallpapercave.com/wp/er4khNt.jpg" alt="Death Note">
+			</div>
+		</div>
+	
+	</div>
+</body>
+</html>

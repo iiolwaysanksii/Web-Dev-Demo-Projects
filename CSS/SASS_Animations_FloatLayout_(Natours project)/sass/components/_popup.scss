@@ -1,0 +1,137 @@
+.popup {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba($color-black, .8);
+	z-index: 9999;
+
+	//animating the popup
+	opacity: 0;
+	visibility: hidden;
+	transition: all .3s;
+
+	//if this property is supported then do this
+	@supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+		background-color: rgba($color-black, .3);
+	}
+
+	&__content {
+		@include absCenter;			//to center the popup in middle of screen
+
+		width: 75%;
+		background-color: $color-white;
+		box-shadow: 0 2rem 4rem rgba($color-black, .2);
+		border-radius: 3px;
+		display: table;
+		overflow: hidden;
+
+		opacity: 0;
+		transform: transform(-50%, -50%) scale(.5);		 
+		transition: all .4s .2s;
+	}
+
+	&__left {
+		width: 33.3333%; //1/3 of white background
+		display: table-cell;		//instead of usig float, if we use table-cell, browser will give both element same height
+	}
+
+	&__right {
+		width: 66.6666%;
+		display: table-cell;
+		vertical-align: middle;
+		padding: 3rem 5rem;
+	}
+
+	&__img {
+		display: block;
+		width: 100%;
+	}
+
+	&__text {
+		font-size: 1.4rem;
+		margin-bottom: 4rem;
+
+		//making column
+		-moz-column-count: 2;
+		-moz-column-gap: 4rem;
+		-moz-column-rule: 1px solid $color-grey-light-1;
+
+		column-count: 2;
+		column-gap: 4rem;
+		column-rule: 1px solid $color-grey-light-1;
+
+		-moz-hyphens: auto;
+		-ms-hyphens: auto;
+		-webkit-hyphens: auto;
+		hyphens: auto;
+	}
+
+	//FUNCTIONALITY
+	//popup open state
+	&:target {		//when the url/target changes to popup, so this
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&:target &__content {  //animates how the popup appears
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	&__close {
+		&:link,
+		&:visited {
+			color: $color-grey-dark;
+			position: absolute;
+			top: 2.5rem;
+			right: 2.5rem;
+			font-size: 3rem;
+			text-decoration: none;
+			transition: all .2s;
+			line-height: 1;
+		}
+
+		&:hover {
+			color: $color-primary-dark;
+		}
+	}
+
+
+
+	@include respond(tab-port) {
+		&__left {
+			display: table-row;
+			width: 100%;
+			height: 33.33333%;
+		}
+	
+		&__right {
+			display: table-row;
+			width: 100%;
+			text-align: center;
+		}
+	
+		&__img {
+			width: 50%;
+			float: left;
+			height: 29rem;	//at this port height, 1 rem is 8px, from dev tools we find that height of row 33.33% evaluates to 232 px -> 29rem (232/8)
+			// you can also use flexbox, here to make sure images are proper.
+		}
+
+		&__text {
+			-moz-column-count: 1;
+			-moz-column-gap: 0;
+			-moz-column-rule: 0 solid $color-grey-light-1;
+	
+			column-count: 1;
+			column-gap: 0;
+			column-rule: 0 solid $color-grey-light-1;
+
+			padding: 3rem;
+		}
+	}
+}

@@ -1,0 +1,38 @@
+.features {
+	grid-column: center-start / center-end;
+
+	margin: 15rem 0;
+
+	display: grid;
+	// grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));		//how did we get 25rem, use inspect element to see where the grid looks ugly
+	grid-gap: 6rem;
+
+	align-items: start;		//default is stretch, so the text inside the grid is aligned in such a way that it takes up full space, spacing is weird so we align it to start
+}
+
+.feature {
+	display: grid;
+	grid-template-columns: min-content 1fr;		//min-content is for icon, so if we change icon-size, the grid will adjust itself to fit the icon
+	grid-row-gap: 1.5rem;
+	grid-column-gap: 2.5rem;
+
+	&__icon {
+		fill: $color-primary;
+		width: 4.5rem;
+		height: 4.5rem;
+		
+		grid-row: 1/span 2;
+		/*
+			we make the icon take i full column so that text automatically adjusts itself in the right second columns
+			Try to do it the other way around.
+			Now, we couldn't say 1/-1 here, as the -1 refers to end of explicit grid, but the second row here is actually implicit
+		*/
+
+		transform: translateY(-1rem);	//simply moves icon a little upwards, alignment purposes because it looks good this way
+	}
+
+	&__text {
+		font-size: 1.7rem;
+	}
+}

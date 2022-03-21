@@ -1,0 +1,224 @@
+.card {
+	//FUNCTIONALITY
+	perspective: 150rem; //makes the card turn look nicer, it looks as if card is coming upwards
+	-moz-perspective: 150rem;
+	height: 53rem;
+	position: relative;
+	//with absolute positioning, the card in this case loses it's height and so the perspective is gone
+	//to fix that there's no clear fix, so we force the card height to be same as card__side
+
+	&__side {
+		font-size: 2rem;
+		height: 53rem;
+		transition: all 1s ease;
+		
+		position: absolute; //so that they completely overlap each other
+		top: 0;
+		left: 0;
+		width: 100%; 
+		
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+
+		border-radius: 3px;
+		box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+		overflow: hidden; //hides the overflown content, so the border radius of parent element is retained
+
+		&--front {
+			background-color: $color-white;
+		}
+
+		//before we hover, back side is basically flipped so it starts at 180deg
+		&--back {
+			transform: rotateY(180deg);
+			&--1 {
+				background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+			}
+			&--2 {
+				background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+			}
+			&--3 {
+				background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+			}
+		}
+	}
+
+	
+	//when we hover then we want the side to transform
+	&:hover &__side--front {
+		transform: rotateY(-180deg);
+	}
+	//but when we hover then back side comes back to 0 while front flips back
+	&:hover &__side--back {
+		transform: rotateY(0);
+	}
+
+//---------------------------------------------------------------
+	//FRONT_SIDE_STYLING
+	&__picture {
+		background-size: cover;
+		height: 23rem;
+
+		background-blend-mode: screen; //blends gradient with the image
+		//test out different blend modes
+
+		-webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+		clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+		border-top-left-radius: 3px; //clip0path somehow broke the overflow described earlier, so we defined border radius here again.
+		border-top-right-radius: 3px;
+		&--1 {
+			background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),url("../img/nat-5.jpg");
+		}
+
+		&--2 {
+			background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),url("../img/nat-6.jpg");
+		}
+
+		&--3 {
+			background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),url("../img/nat-7.jpg");
+		}
+	}
+
+	&__heading {
+		font-size: 2.8rem;
+		font-weight: 300;
+		text-align: right;
+		text-transform: uppercase;
+		color: $color-white;
+		position: absolute;
+		top: 12rem;
+		right: 2rem;
+		width: 75%;
+	}
+
+	//gives the box and the gradient to card
+	&__heading-span {
+		
+		//makes the text appear in 2 separate boxes
+		padding: 1rem 1.5rem;
+		-webkit-box-decoration-break: clone; 
+		box-decoration-break: clone;
+		
+		&--1 {
+			background-image: linear-gradient(
+				to right bottom, 
+				rgba($color-secondary-light, .85), 
+				rgba($color-secondary-dark, .85));
+		}
+
+		&--2 {
+			background-image: linear-gradient(
+				to right bottom, 
+				rgba($color-primary-light, .85), 
+				rgba($color-primary-dark, .85));
+		}
+
+		&--3 {
+			background-image: linear-gradient(
+				to right bottom, 
+				rgba($color-tertiary-light, .85), 
+				rgba($color-tertiary-dark, .85));
+		}
+	}
+
+	&__details {
+		padding: 3rem;
+		ul {
+			list-style: none;
+			width: 80%;
+			margin: 0 auto;
+
+			li {
+				text-align: center;
+				font-size: 1.5rem;
+				padding: 1rem;
+				
+				&:not(:last-child) {
+					border-bottom: 1px solid $color-grey-dark-1;
+				}
+			}
+		}
+	}
+
+//--------------------------------------------
+//BACK_SIDE_DETAILS STYLING, GRADIENT IS ABOVE
+	&__cta {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		
+		width: 90%;	//tries to fit the text of button in one line, hence 90% width
+		text-align: center; //aligns button to center
+	}
+	
+	&__price-box {
+		text-align: center;
+		margin-bottom: 8rem;
+		color: $color-white;
+	}
+
+	&__price-only {
+		font-size: 1.4rem;
+		text-transform: uppercase;
+	}
+	
+	&__price-value {
+		font-size: 6rem;
+		font-weight: 400;
+	}
+
+
+
+
+
+
+	//MEDIA QUERY
+	@include respond(tab-port) {
+		height: auto;
+		border-radius: 3px;
+		background-color: $color-white;
+		box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+
+		&__side {
+			height: auto;
+			position: relative;
+			box-shadow: none;
+			
+			&--back {
+				transform: rotateY(0);
+				clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+			}
+		}
+
+		//no hovet or rotate
+		&:hover &__side--front {
+			transform: rotateY(0);
+		}
+
+	// Front-side styling
+	&__details {
+		padding: 0 3rem;
+	}
+	//--------------------------------------------
+	//BACK_SIDE_DETAILS STYLING
+		&__cta {
+			position: relative;
+			top: 0;
+			left: 0;
+			transform: translate(0);
+			padding: 7rem 4rem;
+			width: 100%;	//tries to fit the text of button in one line, hence 90% width
+		}
+		
+		&__price-box {
+			margin-bottom: 3rem;
+		}
+
+		&__price-value {
+			font-size: 4rem;
+		}
+	}
+}

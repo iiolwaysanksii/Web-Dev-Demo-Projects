@@ -1,0 +1,78 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #B28451;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483A;
+$color-grey-dark-2: #6D5D4B;
+
+// FONT VARIABLES
+$font-primary: 'Nunito', sans-serif;
+$font-display: 'Josefin Sans', sans-serif;
+
+//RESPONSIVE BREAKPOINTS
+$bp-largest: 75em;	//1200px
+$bp-large: 62.5em; //1000px
+$bp-medium: 50em; //800px
+$bp-small: 37.5em; //600px
+
+
+*,
+*::before, 
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-size: 62.5%;	//10px/16px = 62.5%; 1rem = 10px
+
+	@media only screen and (max-width:$bp-largest) {
+		font-size: 50%;	//8px
+	}
+}
+
+body {
+	font-family: $font-primary;
+	color: $color-grey-dark-2;
+	font-weight: 300;
+	line-height: 1.6;
+}
+
+.container {
+	display: grid;
+
+	grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+	grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr)
+												 [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end] ) [center-end]
+												 minmax(6rem, 1fr) [full-end];		
+									//8 rem is for sidebar	
+									//all 8-columns should be between min-content and 140px
+									/*to center these 8 columns, we add 1fr to both side, 
+										so these column occupy the remaining space between sidebar/8-column and 8-column/end of screen
+										however, as we decrease screen width these 1fr become too small of a portion, so we added minmax 
+										to make sure there's always some space around these 8 columns.
+									*/
+									//we could have used margin-auto, but we can't because we have sidebar here as well
+									/*another reason for this 1fr here is that, this strategy allows us to have full-bleed sections(section spanning entire width)
+										along with the usual 8-column sections spanning elements
+									*/
+
+	@media only screen and (max-width:$bp-large) {
+		grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+	
+		grid-template-columns: [full-start] minmax(6rem, 1fr)
+													 [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end] ) [center-end]
+													 minmax(6rem, 1fr) [full-end];	
+	}
+
+	@media only screen and (max-width:$bp-medium) {
+		grid-template-rows: 6rem calc(100vh - 6rem);	//here in the end we wrote 6 rows with min-content, but there's no  need as the auto. placement algo. will take care of that
+	}
+}
